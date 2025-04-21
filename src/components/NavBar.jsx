@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const conversionTypes = [
-     { name: 'Currency', path:'/currency'}
+     { name: 'Currency', path:'/currency_conversion'}
 ]
 
 const NavBar = () => {
