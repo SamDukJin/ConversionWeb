@@ -15,7 +15,7 @@ function App() {
           <TitleContainer/>
           <NavBar />
           <Routes>
-            <Route path="/currency" element={<CurrencyPage/>}></Route>
+            <Route path="/currency_conversion" element={<CurrencyPage/>}></Route>
           </Routes>
         </div>
       </Router>
