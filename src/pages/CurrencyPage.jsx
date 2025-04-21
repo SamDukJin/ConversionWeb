@@ -1,80 +1,101 @@
-import React from "react";
-import { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-function CurrencyPage(){
-     const [amount, setAmount] = useState('');
-     const [fromCur, setFromCur] = useState('THB');
-     const [toCur, settoCur] = useState('USD');
+function CurrencyPage() {
+     const [amount, setAmount] = useState("1");
+     const [fromCur, setFromCur] = useState("THB");
+     const [toCur, setToCur] = useState("USD");
      const [result, setResult] = useState(null);
      const [rate, setRate] = useState(null);
+     const [displayAmount, setDisplayAmount] = useState("1");
+     const [isLoading, setIsLoading] = useState(false);
 
      const handleConvert = async () => {
-          try{
-               const res = await fetch(`http://localhost:8000/convert_currency?from_currency=${fromCur}&to_currency=${toCur}&amount=${amount}`);
-               const data = await res.json();
-               if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
-                    setResult("Please enter a valid amount.");
-                    return;
-                  }
-               if (data.result !== undefined){
-                    setResult(data.result.toLocaleString(undefined, {
-                         minimumFractionDigits:2,
-                         maximumFractionDigits:4
-                    }));
-                    setRate(data.rate);
-               } else if (fromCur === toCur){
-                    setResult(parseFloat(amount).toLocaleString(undefined, {
-                         minimumFractionDigits:2,
-                         maximumFractionDigits:4
-                    }));
-                    setRate(1);
-                    return;
-               }else {
-                    setResult("Error: " + (data.error || "Invalid Response."));
-                    setRate(null);
-               }
-          } catch {
-               setResult("Error connecting to server.")
-               setRate(null);
+     if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+          setResult("Please enter a valid amount.");
+          setRate(null);
+          return;
+     }
+
+     setIsLoading(true);
+
+     try {
+          const res = await fetch(
+          `http://localhost:8000/convert_currency?from_currency=${fromCur}&to_currency=${toCur}&amount=${amount}`
+          );
+          const data = await res.json();
+
+          if (data.result !== undefined) {
+          setResult(data.result);         // Already formatted string from backend
+          setRate(data.rate);             // Already formatted string from backend
+          setDisplayAmount(data.amount);  // Already formatted string from backend
+          } else {
+          setResult("Error: " + (data.error || "Invalid response."));
+          setRate(null);
           }
+     } catch (err) {
+          setResult("Error connecting to server.");
+          setRate(null);
+     } finally {
+          setIsLoading(false);
+     }
      };
 
+     // Auto-convert when amount or currencies change (with debounce)
+     useEffect(() => {
+          if (!amount || isNaN(amount)) return;
+
+          const timeout = setTimeout(() => {
+               handleConvert();
+          }, 500); // Delay after user stops typing
+
+          return () => clearTimeout(timeout);
+     }, [amount, fromCur, toCur]);
+
+     useEffect(() => {
+          handleConvert();
+     }, []);
+
      return (
-          <div className="currency-page">
-               <h2>Currency Convertor</h2>
-               <div className="form-group">
-                    <input 
-                         type="number" 
-                         placeholder="Amount..."
-                         value={amount}
-                         onChange={(e)=>setAmount(e.target.value)}
-                    />
+     <div className="currency-page">
+          <h2>Currency Converter</h2>
 
-                    <select value={fromCur} onChange={(e)=>setFromCur(e.target.value)}>
-                         <option value="THB">THB</option>
-                         <option value="USD">USD</option>
-                         <option value="EUR">EUR</option>
-                    </select>
+          <div className="form-group">
+          <input
+               type="number"
+               placeholder="Amount..."
+               value={amount}
+               onChange={(e) => setAmount(e.target.value)}
+          />
 
-                    <span>→</span>
+          <select value={fromCur} onChange={(e) => setFromCur(e.target.value)}>
+               <option value="THB">THB</option>
+               <option value="USD">USD</option>
+               <option value="EUR">EUR</option>
+          </select>
 
-                    <select value={toCur} onChange={(e)=>settoCur(e.target.value)}>
-                         <option value="THB">THB</option>
-                         <option value="USD">USD</option>
-                         <option value="EUR">EUR</option>
-                    </select>
+          <span>→</span>
 
-                    <button onClick={handleConvert}>Convert</button>
-               </div>    
+          <select value={toCur} onChange={(e) => setToCur(e.target.value)}>
+               <option value="THB">THB</option>
+               <option value="USD">USD</option>
+               <option value="EUR">EUR</option>
+          </select>
 
-               {result !== null &&(
-                    <div className="result">
-                         <p>{amount} {fromCur} = {result} {toCur}</p>
-                         {rate && <p>Exchange Rate: {fromCur} = {rate} {toCur}</p>}
-                    </div>
+          <button onClick={handleConvert} disabled={isLoading}>
+               {isLoading ? "Converting..." : "Convert"}
+          </button>
+          </div>
+
+          {result && (
+          <div className="result">
+               <p>{displayAmount} {fromCur} = {result} {toCur}</p>
+               {rate && (
+               <p>Exchange Rate: 1 {fromCur} = {rate} {toCur}</p>
                )}
           </div>
+          )}
+     </div>
      );
 }
 
-export default CurrencyPage
+export default CurrencyPage;
