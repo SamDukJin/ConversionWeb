@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 
 function CurrencyPage(){
      const [amount, setAmount] = useState('');
@@ -12,10 +12,24 @@ function CurrencyPage(){
           try{
                const res = await fetch(`http://localhost:8000/convert_currency?from_currency=${fromCur}&to_currency=${toCur}&amount=${amount}`);
                const data = await res.json();
+               if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+                    setResult("Please enter a valid amount.");
+                    return;
+                  }
                if (data.result !== undefined){
-                    setResult(data.result);
+                    setResult(data.result.toLocaleString(undefined, {
+                         minimumFractionDigits:2,
+                         maximumFractionDigits:4
+                    }));
                     setRate(data.rate);
-               } else {
+               } else if (fromCur === toCur){
+                    setResult(parseFloat(amount).toLocaleString(undefined, {
+                         minimumFractionDigits:2,
+                         maximumFractionDigits:4
+                    }));
+                    setRate(1);
+                    return;
+               }else {
                     setResult("Error: " + (data.error || "Invalid Response."));
                     setRate(null);
                }
