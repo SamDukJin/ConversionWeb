@@ -7,13 +7,13 @@ const conversionTypes = [
 
 const NavBar = () => {
      return (
-       <nav className="navbar">
-         {conversionTypes.map((type, index) => (
-           <Link key={index} className="nav-link" to={type.path}>
-             {type.name}
-           </Link>
-         ))}
-       </nav>
+          <nav className="navbar">
+          {conversionTypes.map((type, index) => (
+               <Link key={index} className="nav-link" to={type.path}>
+               {type.name}
+               </Link>
+          ))}
+          </nav>
      )
 }
 

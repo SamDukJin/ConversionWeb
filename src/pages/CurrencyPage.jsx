@@ -9,6 +9,19 @@ function CurrencyPage() {
      const [displayAmount, setDisplayAmount] = useState("1");
      const [isLoading, setIsLoading] = useState(false);
 
+     const currencyList = [
+          { code: "USD", name: "🇺🇸 US Dollar" },
+          { code: "EUR", name: "🇪🇺 Euro" },
+          { code: "THB", name: "🇹🇭 Thai Baht" },
+          { code: "JPY", name: "🇯🇵 Japanese Yen" },
+          { code: "GBP", name: "🇬🇧 British Pound" },
+          { code: "AUD", name: "🇦🇺 Australian Dollar" },
+          { code: "CAD", name: "🇨🇦 Canadian Dollar" },
+          { code: "CHF", name: "🇨🇭 Swiss Franc" },
+          { code: "CNY", name: "🇨🇳 Chinese Yuan" },
+          { code: "SGD", name: "🇸🇬 Singapore Dollar" },
+     ];
+        
      const handleConvert = async () => {
      if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
           setResult("Please enter a valid amount.");
@@ -68,17 +81,17 @@ function CurrencyPage() {
           />
 
           <select value={fromCur} onChange={(e) => setFromCur(e.target.value)}>
-               <option value="THB">THB</option>
-               <option value="USD">USD</option>
-               <option value="EUR">EUR</option>
+               {currencyList.map((cur)=> (
+                    <option key={cur.code} value = {cur.code}>{cur.name}</option>
+               ))}
           </select>
 
-          <span>→</span>
+          <span id="arrow">→</span>
 
           <select value={toCur} onChange={(e) => setToCur(e.target.value)}>
-               <option value="THB">THB</option>
-               <option value="USD">USD</option>
-               <option value="EUR">EUR</option>
+               {currencyList.map((cur)=> (
+                    <option key={cur.code} value = {cur.code}>{cur.name}</option>
+               ))}
           </select>
 
           <button onClick={handleConvert} disabled={isLoading}>
