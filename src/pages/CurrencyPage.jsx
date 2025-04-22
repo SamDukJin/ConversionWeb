@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {currencyList} from "../assets/DataStorage"
 
 function CurrencyPage() {
      const [amount, setAmount] = useState("1");
@@ -8,19 +9,6 @@ function CurrencyPage() {
      const [rate, setRate] = useState(null);
      const [displayAmount, setDisplayAmount] = useState("1");
      const [isLoading, setIsLoading] = useState(false);
-
-     const currencyList = [
-          { code: "USD", name: "🇺🇸 US Dollar" },
-          { code: "EUR", name: "🇪🇺 Euro" },
-          { code: "THB", name: "🇹🇭 Thai Baht" },
-          { code: "JPY", name: "🇯🇵 Japanese Yen" },
-          { code: "GBP", name: "🇬🇧 British Pound" },
-          { code: "AUD", name: "🇦🇺 Australian Dollar" },
-          { code: "CAD", name: "🇨🇦 Canadian Dollar" },
-          { code: "CHF", name: "🇨🇭 Swiss Franc" },
-          { code: "CNY", name: "🇨🇳 Chinese Yuan" },
-          { code: "SGD", name: "🇸🇬 Singapore Dollar" },
-     ];
         
      const handleConvert = async () => {
      if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
@@ -94,7 +82,11 @@ function CurrencyPage() {
                ))}
           </select>
 
-          <button onClick={handleConvert} disabled={isLoading}>
+          <button 
+               onClick={handleConvert} 
+               disabled={isLoading}
+               className="button-cur"
+          >
                {isLoading ? "Converting..." : "Convert"}
           </button>
           </div>

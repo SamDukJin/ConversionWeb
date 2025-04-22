@@ -1,16 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-const conversionTypes = [
-     { name: 'Currency', path:'/currency_conversion'}
-]
+import { tools as conversionTypes } from '../assets/DataStorage'
 
 const NavBar = () => {
      return (
           <nav className="navbar">
-          {conversionTypes.map((type, index) => (
+          {conversionTypes
+               .map((type, index) => (
                <Link key={index} className="nav-link" to={type.path}>
-               {type.name}
+               {type.title}
                </Link>
           ))}
           </nav>
