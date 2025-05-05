@@ -18,18 +18,16 @@ function MainPage() {
           </div>
 
           <div className="button-card-wrapper">
-               <div className="button-card-container">
-                    {tools
-                         .filter(tool => tool.visible)     
-                         .map((tool, index) => (
-                         <ButtonCard
-                         key={index}
-                         title={tool.title}
-                         description={tool.description}
-                         onClick={() => navigate(tool.path)}
-                         />
-                    ))}
-               </div>
+               {tools
+               .filter(tool => tool.visible)
+               .map((tool, index) => (
+                    <ButtonCard
+                    key={index}
+                    title={tool.title}
+                    description={tool.description}
+                    onClick={() => navigate(tool.path)}
+                    />
+               ))}
           </div>
      </div>
      );
