@@ -1,7 +1,6 @@
 import React from "react";
 import ButtonCard from "../components/ButtonCard";
 import { useNavigate } from "react-router-dom";
-import "../components/Sub.css";
 import { tools } from "../assets/DataStorage" 
 
 function MainPage() {
