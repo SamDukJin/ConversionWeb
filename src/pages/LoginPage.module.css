@@ -1,48 +1,99 @@
-.formContainer {
-   background-color: rgb(235, 235, 235);
-   padding: 2rem;
-   border-radius: 1rem;
-   color: rgb(0, 0, 0);
-   min-width: 300px;
-   display:flex;
-   flex-direction: column;
-   align-items: flex-start;
-}
-
 .mainLoginContainer {
    display: flex;
+   flex-direction: column;
    align-items: center;
    justify-content: center;
-   position: absolute;
-   flex-direction: column;
-   top: 30vh;
-   left: 30vw;
-   margin-top: 5vw;
-   height: 40vh;
-   width: 40vw;
-   border-radius: 30px;
-   background-color: rgb(235, 235, 235);
-   box-shadow: 0 0 5px 5px rgba(68, 68, 68, 0.1);
+   height: 70vh;
+   background-color: #f5f5f5;
 }
 
-#loginTitle {
-   color:black;
-   top:0;
-   margin-top:0;
-   font-size:35px;
+.loginTitle {
+   font-size: 35px;
+   color: black;
+   margin-bottom: 1rem;
    text-shadow: 2px 2px 5px rgb(94, 94, 94);
 }
 
-label {
-   font-size:20px;
+.formContainer {
+   background-color: white;
+   padding: 2rem;
+   border-radius: 1rem;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   width: 300px;
 }
 
-#input_username, #input_password {
+.loginForm {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+}
+
+.inputGroup {
+   display: flex;
+   flex-direction: column;
+}
+
+.inputGroup label {
+   font-size: 18px;
+   margin-bottom: 0.25rem;
+}
+
+.inputGroup input {
    padding: 0.5rem;
    font-size: 1rem;
-   border-radius: 20px;
-   width: calc(100% - 2rem);
-   box-sizing: border-box;
+   border-radius: 10px;
+   border: 1px solid #ccc;
 }
 
+.buttonGroup {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
 
+.loginButton,
+.forgotButton,
+.registerButton,
+.cancelButton {
+   padding: 0.5rem;
+   font-size: 1rem;
+   border: none;
+   border-radius: 10px;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}
+
+.loginButton {
+   background-color: #007bff;
+   color: white;
+}
+
+.loginButton:hover {
+   background-color: #0056b3;
+}
+
+.forgotButton {
+   background-color: #ffc107;
+   color: black;
+}
+
+.forgotButton:hover {
+   background-color: #e0a800;
+}
+
+.registerButton {
+   background-color: #33cb56;
+   color: white;
+}
+
+.registerButton:hover {
+   background-color: #45a049;
+}
+.cancelButton {
+   background-color: #6c757d;
+   color: white;
+}
+
+.cancelButton:hover {
+   background-color: #5a6268;
+}
