@@ -1,9 +1,8 @@
-/* src/App.css */
-
 input, select {
   padding: 0.5rem;
   font-size: 1rem;
 }
+
 /* Page Containers */
 .currency-page-container,
 .main-page-container {
@@ -18,10 +17,8 @@ input, select {
 #title-currency-page {
   text-align: center;
 }
-/* Typography */
-.p-mp {
-  font-size: 20px;
-}
+
+/* Text Style */
 
 .result {
   font-weight: bold;
@@ -61,14 +58,15 @@ input, select {
 .navbar-container {
   width: 100%;
   background-color: #f4f4f4;
+  display:flex;
+  flex-direction: row;
+  padding: 20px;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  flex-wrap: wrap;
   width: 100%;
 }
 
@@ -77,7 +75,7 @@ input, select {
   gap: 25px;
   flex-wrap: wrap;
   margin: 0 auto;
-  margin-right:15vw;
+  margin-right:18vw;
   justify-content: center;
 }
 
@@ -157,6 +155,9 @@ input, select {
   margin-bottom: 1rem;
 }
 
+/* Login Page */
+
+
 @media (max-width: 900px) {
   .main-button-card {
     flex: 1 1 calc(50% - 1.5rem); 
@@ -198,7 +199,19 @@ input, select {
     max-width: 100%;
   }
 }
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
 
+} */
+
+/* Animation/Transition Parts */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-

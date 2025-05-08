@@ -1,0 +1,30 @@
+.formContainer {
+   background-color: white;
+   padding: 2rem;
+   border-radius: 1rem;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   width: 300px;
+}
+
+.inputGroup {
+   display: flex;
+   flex-direction: column;
+}
+
+.inputGroup label {
+   font-size: 18px;
+   margin-bottom: 0.25rem;
+}
+
+.inputGroup input {
+   padding: 0.5rem;
+   font-size: 1rem;
+   border-radius: 10px;
+   border: 1px solid #ccc;
+}
+
+.buttonGroup {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
