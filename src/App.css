@@ -77,6 +77,7 @@ input, select {
   margin: 0 auto;
   margin-right:18vw;
   justify-content: center;
+  padding-right:1.5vw;
 }
 
 .navbar-right {
@@ -95,11 +96,11 @@ input, select {
 }
 
 /* BUTTON CARDS SECTION */
-/* .button-card-container {
+.button-card-container {
   display:flex;
   flex-direction: row;
   gap:25px;
-} */
+}
 
 .button-card-wrapper {
   display: flex;
@@ -155,6 +156,10 @@ input, select {
   margin-bottom: 1rem;
 }
 
+.form-container {
+  margin-left: 40px;
+}
+
 /* Login Page */
 
 
@@ -181,11 +186,14 @@ input, select {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    color: red;
+
   }
 
   .navbar-links {
     margin: 0;
     justify-content: center;
+    color:red;
   }
 
   .navbar-right {

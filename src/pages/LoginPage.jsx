@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './LoginPage.module.css';
+import formStyle from './FormStyle.module.css';
 
 
 function LoginPage() {
@@ -44,13 +45,23 @@ function LoginPage() {
       }
    };
 
+   const handleRegister = async (e) => {
+      e.preventDefault();
+         navigate('/registration_page');
+   }
+
+   const handleCancel = async (e) => {
+      e.preventDefault();
+      navigate('/main_page');
+   }
+
    return (
       <div className={style.mainLoginContainer}>
          <p className={style.loginTitle}>Login Page</p>
 
-         <div className={style.formContainer}>
+         <div className={formStyle.formContainer}>
          <form className={style.loginForm} onSubmit={handleSubmit}>
-            <div className={style.inputGroup}>
+            <div className={formStyle.inputGroup}>
                <label htmlFor="username">Username:</label>
                <input
                type="text"
@@ -61,7 +72,7 @@ function LoginPage() {
                />
             </div>
 
-            <div className={style.inputGroup}>
+            <div className={formStyle.inputGroup}>
                <label htmlFor="password">Password:</label>
                <input
                type="password"
@@ -74,7 +85,7 @@ function LoginPage() {
 
             {errorMsg && <p className={style.errorMsg}>{errorMsg}</p>}
 
-            <div className={style.buttonGroup}>
+            <div className={formStyle.buttonGroup}>
                <button type="submit" className={style.loginButton}>Login</button>
                <button type="button"
                   className={style.forgotButton}
@@ -84,8 +95,14 @@ function LoginPage() {
                   Forgot Password
                </button>
                <p>Don't have an account? <br /> Register!</p>
-               <button type="button" className={style.registerButton}>Register</button>
-               <button type="button" className={style.cancelButton}>Cancel</button>
+               <button type="button"
+                  className={style.registerButton}
+                  onClick={handleRegister}
+               > Register</button>
+               <button type="button" 
+                  className={style.cancelButton}
+                  onClick={handleCancel}
+               >Cancel</button>
             </div>
          </form>
          </div>

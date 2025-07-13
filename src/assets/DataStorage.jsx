@@ -44,6 +44,7 @@ const currency_list=[
      {"code": "INR", "name": "Indian Rupee"},
      {"code": "MYR", "name": "Malaysian Ringgit"},
      {"code": "IDR", "name": "Indonesian Rupiah"},
+     {"code": "MMK", "name": "Myanmar Kyat"},
      {"code": "CHF", "name": "Swiss Franc"},
      {"code": "SEK", "name": "Swedish Krona"}
 ]

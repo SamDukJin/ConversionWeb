@@ -56,50 +56,51 @@ function CurrencyPage() {
    return (
       <div className="currency-page-container">
          <h2 id="title-currency-page">Currency Converter</h2>
+         <div className="form-container">
+            <div className="form-group">
+               <input
+                  type="number"
+                  placeholder="Amount..."
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+               />
 
-         <div className="form-group">
-            <input
-               type="number"
-               placeholder="Amount..."
-               value={amount}
-               onChange={(e) => setAmount(e.target.value)}
-            />
+               <select value={fromCur} onChange={(e) => setFromCur(e.target.value)}>
+                  {currency_list.map((cur) => (
+                     <option key={cur.code} value={cur.code}>
+                        {cur.name}
+                     </option>
+                  ))}
+               </select>
 
-            <select value={fromCur} onChange={(e) => setFromCur(e.target.value)}>
-               {currency_list.map((cur) => (
-                  <option key={cur.code} value={cur.code}>
-                     {cur.name}
-                  </option>
-               ))}
-            </select>
+               <span id="arrow">→</span>
 
-            <span id="arrow">→</span>
+               <select value={toCur} onChange={(e) => setToCur(e.target.value)}>
+                  {currency_list.map((cur) => (
+                     <option key={cur.code} value={cur.code}>
+                        {cur.name}
+                     </option>
+                  ))}
+               </select>
 
-            <select value={toCur} onChange={(e) => setToCur(e.target.value)}>
-               {currency_list.map((cur) => (
-                  <option key={cur.code} value={cur.code}>
-                     {cur.name}
-                  </option>
-               ))}
-            </select>
-
-            <button
-               onClick={handleConvert}
-               disabled={isLoading}
-               className="button-cur"
-            >
-               {isLoading ? "Converting..." : "Convert"}
-            </button>
-         </div>
-
-         {result && (
-            <div className="result">
-               <p>{displayAmount} {fromCur} = {result} {toCur}</p>
-               {rate && (
-                  <p>Exchange Rate: 1 {fromCur} = {rate} {toCur}</p>
-               )}
+               <button
+                  onClick={handleConvert}
+                  disabled={isLoading}
+                  className="button-cur"
+               >
+                  {isLoading ? "Converting..." : "Convert"}
+               </button>
             </div>
-         )}
+
+            {result && (
+               <div className="result">
+                  <p>{displayAmount} {fromCur} = {result} {toCur}</p>
+                  {rate && (
+                     <p>Exchange Rate: 1 {fromCur} = {rate} {toCur}</p>
+                  )}
+               </div>
+            )}
+         </div>
       </div>
    );
 }
